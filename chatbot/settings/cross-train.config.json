@@ -1,0 +1,32 @@
+{
+  "oc-itps-automation.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "": [
+        "hello.en-us",
+        "Ticketactions.en-us",
+        "Passwordreset.en-us",
+        "hello.en-us",
+        "Help.en-us"
+      ],
+      "Help": [
+        "Help.en-us"
+      ],
+      "service": [
+        "service.en-us"
+      ],
+      "Ticketactions": [
+        "Ticketactions.en-us"
+      ],
+      "Passwordreset": [
+        "Passwordreset.en-us"
+      ],
+      "clinical": [
+        "clinical.en-us"
+      ],
+      "Logic": [
+        "Logic.en-us"
+      ]
+    }
+  }
+}

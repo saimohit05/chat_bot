@@ -1,0 +1,42 @@
+{
+  "name": "azure-oc-itps-automation",
+  "private": true,
+  "scripts": {
+    "setup": "./scripts/setup.sh dev",
+    "dev": "cross-env NODE_ENV=dev node index.js",
+    "start": "node index.js",
+    "build:schema": "cd schemas && sh ./update-schema.sh",
+    "test": "node_modules/mocha/bin/mocha -r ts-node/register --extension ts --extension js --recursive __tests__",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run test",
+    "test:dialog": "node_modules/mocha/bin/mocha __spec__ --reporter mochawesome --reporter-options reportDir=botium-report,reportFilename=botium-report.html",
+    "test:dialog-smoke": "TEST_SCOPE=smoke node_modules/mocha/bin/mocha __spec__ --reporter mochawesome --reporter-options reportDir=botium-report,reportFilename=botium-report.htm"
+  },
+  "botium": {
+    "expandConvos": true,
+    "expandUtterancesToConvos": false,
+    "expandScriptingMemoryToConvos": false
+  },
+  "dependencies": {
+    "@advanceddevelopment/caip-custom-actions": "0.0.4",
+    "botbuilder-ai-luis": "4.13.4-preview",
+    "botbuilder-ai-qna": "4.13.4-preview",
+    "botbuilder-dialogs-adaptive-runtime": "4.13.4-preview",
+    "botbuilder-dialogs-adaptive-runtime-integration-express": "4.13.4-preview",
+    "cross-env": "latest"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
+    "@types/sinon": "^10.0.2",
+    "botium-bindings": "^2.1.8",
+    "botium-connector-directline3": "0.0.26",
+    "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
+    "mocha": "^9.0.0",
+    "mochawesome": "^6.2.2",
+    "nyc": "^15.1.0",
+    "sinon": "^11.1.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}

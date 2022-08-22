@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_oc-itps-automation",
+  "recognizers": {
+    "en-us": "oc-itps-automation.en-us.lu",
+    "": "oc-itps-automation.en-us.lu"
+  }
+}

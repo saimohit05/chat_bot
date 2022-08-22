@@ -1,0 +1,90 @@
+{
+  "customFunctions": [],
+  "defaultLanguage": "en-us",
+  "defaultLocale": "en-us",
+  "importedLibraries": [],
+  "languages": ["en-us"],
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "luFeatures": {
+    "enableCompositeEntities": true,
+    "enableListEntities": true,
+    "enableMLEntities": true,
+    "enablePattern": true,
+    "enablePhraseLists": true,
+    "enablePrebuiltEntities": true,
+    "enableRegexEntities": true
+  },
+  "luis": {
+    "authoringKey": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/luis-authoring-key",
+    "authoringEndpoint": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/luis-authoring-endpoint",
+    "endpointKey": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/luis-endpoint-key",
+    "endpoint": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/luis-endpoint",
+    "authoringRegion": "westus",
+    "defaultLanguage": "en-us",
+    "environment": "composer",
+    "name": "[LUIS_APP_NAME_BASE]"
+  },
+  "publishTargets": [],
+  "qna": {
+    "subscriptionKey": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/qna-subscription-key",
+    "knowledgebaseid": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/qna-knowledgebase-id",
+    "endpointKey": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/qna-endpoint-key",
+    "hostname": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/qna-hostname",
+    "qnaRegion": "westus",
+    "scoreThreshold": "0.3"
+  },
+  "BlobsStorage": {
+    "connectionString": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/storage-connection-string",
+    "containerName": "statelogs"
+  },
+  "runtime": {
+    "command": "npm run dev --",
+    "customRuntime": true,
+    "key": "adaptive-runtime-js-webapp",
+    "path": "../"
+  },
+  "runtimeSettings": {
+    "adapters": [],
+    "features": {
+      "removeRecipientMentions": false,
+      "showTyping": true,
+      "traceTranscript": true,
+      "blobTranscript": {
+        "connectionString": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/storage-connection-string",
+        "containerName": "transcriptlogs"
+      },
+      "useInspection": false,
+      "setSpeak": {
+        "voiceFontName": "en-US-AriaNeural",
+        "fallbackToTextForSpeechIfEmpty": true
+      }
+    },
+    "components": [
+      {
+        "name": "@advanceddevelopment/caip-custom-actions"
+      }
+    ],
+    "skills": {
+      "allowedCallers": []
+    },
+    "storage": "BlobsStorage",
+    "telemetry": {
+      "logActivities": true,
+      "logPersonalInformation": true,
+      "options": {
+        "instrumentationKey": "https://[KEY_VAULT_NAME].vault.azure.net/secrets/appinsights-instrument-key"
+      }
+    }
+  },
+  "downsampling": {
+    "maxImbalanceRatio": -1
+  },
+  "skillConfiguration": {},
+  "skillHostEndpoint": "http://localhost:3980/api/skills"
+}

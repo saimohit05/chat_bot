@@ -1,0 +1,346 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "oc-itps-automation",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item"
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else"
+              },
+              "condition": "string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "RyLneH"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "hello"
+                },
+                {
+                  "$kind": "Microsoft.SwitchCondition",
+                  "$designer": {
+                    "id": "RowDMS"
+                  },
+                  "condition": "user.ans",
+                  "cases": [
+                    {
+                      "value": "Ticket Actions",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "RXaaW3"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "Ticketactions"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "I.T. Actions"
+                    },
+                    {
+                      "value": "Password Resets",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "f945dr"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "Passwordreset"
+                        }
+                      ]
+                    },
+                    {
+                      "value": "Guides"
+                    },
+                    {
+                      "value": "Search FAQs"
+                    },
+                    {
+                      "value": "Return to Main Menu",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.BeginDialog",
+                          "$designer": {
+                            "id": "LRw8EI"
+                          },
+                          "activityProcessed": true,
+                          "dialog": "hello"
+                        }
+                      ]
+                    }
+                  ],
+                  "default": [
+                    {
+                      "$kind": "Microsoft.BeginDialog",
+                      "$designer": {
+                        "id": "XxNsCw"
+                      },
+                      "activityProcessed": true,
+                      "dialog": "Help"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "value": "dialog.foreach.value"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "kMjqz1"
+          },
+          "activity": "${SendActivity_DidNotUnderstand()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnQnAMatch",
+      "$designer": {
+        "id": "xxQkNW"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "qk1s6T"
+          },
+          "condition": "count(turn.recognized.answers[0].context.prompts) > 0",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "sV4Qhu"
+              },
+              "property": "dialog.qnaContext",
+              "value": "=turn.recognized.answers[0].context.prompts"
+            },
+            {
+              "$kind": "Microsoft.TextInput",
+              "$designer": {
+                "id": "oUCDH6"
+              },
+              "maxTurnCount": 3,
+              "alwaysPrompt": true,
+              "allowInterruptions": false,
+              "prompt": "${TextInput_Prompt_9D1is1()}",
+              "property": "turn.qnaMultiTurnResponse"
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "erCETN"
+              },
+              "property": "turn.qnaMatchFromContext",
+              "value": "=where(dialog.qnaContext, item, item.displayText == turn.qnaMultiTurnResponse)"
+            },
+            {
+              "$kind": "Microsoft.DeleteProperty",
+              "$designer": {
+                "id": "4IpxQu"
+              },
+              "property": "dialog.qnaContext"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "SRCled"
+              },
+              "condition": "turn.qnaMatchFromContext && count(turn.qnaMatchFromContext) > 0",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "iOvN6b"
+                  },
+                  "property": "turn.qnaIdFromPrompt",
+                  "value": "=turn.qnaMatchFromContext[0].qnaId"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.EmitEvent",
+              "$designer": {
+                "id": "H8bkxR"
+              },
+              "eventName": "activityReceived",
+              "eventValue": "=turn.activity"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "dZsZUc"
+              },
+              "activity": "${SendActivity_Pul7yd()}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "GyvgSW",
+        "name": "Help"
+      },
+      "intent": "Help",
+      "condition": "=#Help.score>=0.8",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "eJ8fxf"
+          },
+          "activityProcessed": true,
+          "dialog": "Help"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Z6xxzo",
+        "name": "service"
+      },
+      "intent": "service",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "OyeVKm"
+          },
+          "activityProcessed": true,
+          "dialog": "service"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "47EWi1",
+        "name": "Ticketactions"
+      },
+      "intent": "Ticketactions",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "QSL78l"
+          },
+          "activityProcessed": true,
+          "dialog": "Ticketactions"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "fjrGQg",
+        "name": "Passwordreset"
+      },
+      "intent": "Passwordreset",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "R3J5FW"
+          },
+          "activityProcessed": true,
+          "dialog": "Passwordreset"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "v2X3Zp",
+        "name": "clinical"
+      },
+      "intent": "clinical",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "9e4Y4i"
+          },
+          "activityProcessed": true,
+          "dialog": "clinical"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "uKCZC5",
+        "name": "Incident default"
+      },
+      "intent": "Logic",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "M7rl8B"
+          },
+          "activityProcessed": true,
+          "dialog": "Logic"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "k36E34",
+        "name": "incident"
+      },
+      "intent": "incident",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "UPcILL"
+          },
+          "activityProcessed": true,
+          "dialog": "incident"
+        }
+      ]
+    }
+  ],
+  "generator": "oc-itps-automation.lg",
+  "id": "oc-itps-automation",
+  "recognizer": "oc-itps-automation.lu.qna"
+}

@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "QnA_oc-itps-automation",
+  "recognizers": {
+    "en-us": "oc-itps-automation.en-us.qna",
+    "": "oc-itps-automation.en-us.qna"
+  }
+}

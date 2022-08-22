@@ -1,0 +1,8 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_5gPiqM_text()
+- Thank you for contacting IT Support Desk, this is Ema. I can help you with below actions
+# ChoiceInput_Prompt_5gPiqM()
+[Activity
+    Text = ${ChoiceInput_Prompt_5gPiqM_text()}
+]

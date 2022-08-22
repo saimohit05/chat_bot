@@ -1,0 +1,16 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_t5RTjD_text()
+- "Here are all the actions that I can help you with”
+# ChoiceInput_Prompt_t5RTjD()
+[Activity
+    Text = ${ChoiceInput_Prompt_t5RTjD_text()}
+]
+
+# SendActivity_4bcim8()
+[Activity
+    Text = ${SendActivity_4bcim8_text()}
+]
+
+# SendActivity_4bcim8_text()
+- Please give a short description of the incident to help distinguish it from other incidents (you will be asked to give a detailed summary in the next step)

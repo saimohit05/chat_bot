@@ -1,0 +1,35 @@
+[import](common.lg)
+
+# TextInput_Prompt_VaPFaT_text()
+- Please describe the issue in detail including any error messages you have received. Do not include any private or protected information in your description.
+# TextInput_Prompt_VaPFaT()
+[Activity
+    Text = ${TextInput_Prompt_VaPFaT_text()}
+]
+
+# ChoiceInput_Prompt_H3S7Nc_text()
+- What type of incident do you want to raise
+# ChoiceInput_Prompt_H3S7Nc()
+[Activity
+    Text = ${ChoiceInput_Prompt_H3S7Nc_text()}
+]
+
+
+# ConfirmInput_Prompt_tNqt7O_text()
+- ```Ok, before I create this incident for you, have a look over what you've said and decide if you want to make any changes
+
+Summary  :
+${user.short_description}
+
+Issue  :
+${user.detail_description}
+
+Type  :
+${user.incident_type}
+
+Do you want to make any changes ?
+```
+# ConfirmInput_Prompt_tNqt7O()
+[Activity
+    Text = ${ConfirmInput_Prompt_tNqt7O_text()}
+]

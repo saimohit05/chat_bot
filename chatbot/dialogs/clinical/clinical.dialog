@@ -1,0 +1,159 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "QGRzIH",
+    "name": "Clinical",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "cQmNIa"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "y8ofkx"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_y8ofkx()}",
+          "invalidPrompt": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "property": "user.clinical_department",
+          "style": "heroCard",
+          "recognizerOptions": {
+            "recognizeOrdinals": true
+          },
+          "choices": [
+            "Registration Front office",
+            "Doctor office",
+            "Nursing ",
+            "Laboratory"
+          ]
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "huppvj"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_huppvj()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "style": "heroCard",
+          "choices": [
+            "Order",
+            "Clinical document",
+            "Lab/Radiology results "
+          ],
+          "property": "user.clinical_patient "
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "qIM33Y"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "style": "heroCard",
+          "choices": [
+            "General discharge summary ",
+            "Plan of care ",
+            "Dietitian summary"
+          ],
+          "prompt": "${ChoiceInput_Prompt_qIM33Y()}",
+          "property": "user.clinical_document"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "fdErYi"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_fdErYi()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.clinical_detailissue"
+        },
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "GjKsge"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_GjKsge()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or "
+          },
+          "property": "user.incident",
+          "style": "heroCard",
+          "confirmChoices": [
+            "Create the incident",
+            "make changes "
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "vipwta"
+          },
+          "activityProcessed": true,
+          "dialog": "incident"
+        }
+      ]
+    }
+  ],
+  "generator": "clinical.lg",
+  "recognizer": "clinical.lu.qna",
+  "id": "clinical"
+}

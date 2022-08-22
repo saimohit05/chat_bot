@@ -1,0 +1,138 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "bHzQLN",
+    "name": "Incident",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "SW9DQ9"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "V1Knge"
+          },
+          "condition": "=user.incident == false",
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "58u2j4"
+              },
+              "activityProcessed": true,
+              "dialog": "Ticketactions"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "Alz7Za"
+              },
+              "resultProperty": "turn.results",
+              "method": "POST",
+              "headers": {
+                "Authorization": "Basic YWRtaW46T2t6ZndCNE9WITNA",
+                "Content-Type": "application/json"
+              },
+              "body": "{\"u_requested_for\":\"${user.short_description}\",\"u_email_id\":\"${user.system}\",\"u_incident_state\":\"${user.incident_type}\",\"u_short_description\":\"${user.short_description}\"}",
+              "url": "=\"https://dev127580.service-now.com/api/now/import/u_optum_bot\""
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "RF2N9E"
+              },
+              "property": "dialog.result",
+              "value": "=foreach(turn.results.content,x,x.value)"
+            },
+            {
+              "$kind": "Microsoft.Foreach",
+              "$designer": {
+                "id": "uEJQUP"
+              },
+              "index": "dialog.foreach.index",
+              "value": "dialog.foreach.value",
+              "itemsProperty": "dialog.result",
+              "actions": [
+                {
+                  "$kind": "Microsoft.IfCondition",
+                  "$designer": {
+                    "id": "iZHJIf"
+                  },
+                  "condition": "=dialog.foreach.index == 2",
+                  "actions": [
+                    {
+                      "$kind": "Microsoft.SetProperty",
+                      "$designer": {
+                        "id": "qzTzAa"
+                      },
+                      "property": "dialog.ans",
+                      "value": "=dialog.foreach.value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.Foreach",
+              "$designer": {
+                "id": "HEt3vf"
+              },
+              "index": "dialog.foreach.index",
+              "value": "dialog.foreach.value",
+              "itemsProperty": "dialog.ans",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "v4cz7V"
+                  },
+                  "property": "dialog.one",
+                  "value": "=dialog.foreach.value"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "B8xm2X"
+              },
+              "condition": "=turn.results.statusCode == 201",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "faWAXX"
+                  },
+                  "activity": "${SendActivity_faWAXX()}"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "BGxdbd"
+                  },
+                  "activity": "${SendActivity_BGxdbd()}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "incident.lg",
+  "recognizer": "incident.lu.qna",
+  "id": "incident"
+}

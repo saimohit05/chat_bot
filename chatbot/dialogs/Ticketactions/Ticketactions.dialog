@@ -1,0 +1,110 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "l1VVfO",
+    "name": "Ticketactions",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "n9VbXj"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "t5RTjD"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_t5RTjD()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or "
+          },
+          "property": "user.next",
+          "style": "heroCard",
+          "choices": [
+            "RETURN STATUS OF AN INCIDENT TICKET",
+            "VIEW YOUR OPEN INCIDENT TICKETS",
+            "OPEN A NEW INCIDENT TICKET",
+            "ESCALATE A INCIDENT TICKET",
+            "RETURN TO ALL ACTIONS"
+          ]
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "MzCGRG"
+          },
+          "condition": "user.next",
+          "cases": [
+            {
+              "value": "RETURN STATUS OF AN INCIDENT TICKET",
+              "actions": []
+            },
+            {
+              "value": "VIEW YOUR OPEN INCIDENT TICKETS",
+              "actions": []
+            },
+            {
+              "value": "OPEN A NEW INCIDENT TICKET",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "4bcim8"
+                  },
+                  "activity": "${SendActivity_4bcim8()}"
+                }
+              ]
+            },
+            {
+              "value": "ESCALATE A INCIDENT TICKET",
+              "actions": []
+            },
+            {
+              "value": "RETURN TO ALL ACTIONS",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "KszbSN"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "hello"
+                }
+              ]
+            }
+          ],
+          "default": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "sh6cn0"
+              },
+              "activityProcessed": true,
+              "dialog": "Help"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Ticketactions.lg",
+  "recognizer": "Ticketactions.lu.qna",
+  "id": "Ticketactions"
+}

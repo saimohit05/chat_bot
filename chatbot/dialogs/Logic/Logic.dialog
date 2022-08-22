@@ -1,0 +1,103 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "VdRR03",
+    "name": "Incident default",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "U7OHcH"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "VaPFaT"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_VaPFaT()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.detail_description"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "H3S7Nc"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_H3S7Nc()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or "
+          },
+          "property": "user.incident_type",
+          "style": "heroCard",
+          "choices": [
+            "Break/Fix",
+            "Password Reset",
+            "Request for Information",
+            "Service Request"
+          ]
+        },
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "tNqt7O"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_tNqt7O()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "property": "user.incident",
+          "style": "heroCard",
+          "confirmChoices": [
+            "Create the incident",
+            "make changes"
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "HxX6r4"
+          },
+          "activityProcessed": true,
+          "dialog": "incident"
+        }
+      ]
+    }
+  ],
+  "generator": "Logic.lg",
+  "recognizer": "Logic.lu.qna",
+  "id": "Logic"
+}

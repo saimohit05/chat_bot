@@ -1,0 +1,44 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_y8ofkx()
+[Activity
+    Text = ${ChoiceInput_Prompt_y8ofkx_text()}
+]
+
+# ChoiceInput_Prompt_y8ofkx_text()
+- Which department are you reaching out from ?
+# ChoiceInput_Prompt_huppvj()
+[Activity
+    Text = ${ChoiceInput_Prompt_huppvj_text()}
+]
+
+# ChoiceInput_Prompt_huppvj_text()
+- What are you trying to do for the patient ?
+# ChoiceInput_Prompt_qIM33Y()
+[Activity
+    Text = ${ChoiceInput_Prompt_qIM33Y_text()}
+]
+
+# ChoiceInput_Prompt_qIM33Y_text()
+- Which Document are you trying to enter/view/submit ?
+# TextInput_Prompt_fdErYi()
+[Activity
+    Text = ${TextInput_Prompt_fdErYi_text()}
+]
+
+# TextInput_Prompt_fdErYi_text()
+- Please describe details of your issue below ?
+# ConfirmInput_Prompt_GjKsge()
+[Activity
+    Text = ${ConfirmInput_Prompt_GjKsge_text()}
+]
+
+# ConfirmInput_Prompt_GjKsge_text()
+- ```Ok, before I create this incident for you, have a look over what you've said and decide if you want to make any changes
+
+Summary 
+
+Department : ${user.clinical_department}
+Patient         :  ${user.clinical_patient}
+Document    :  ${user.clinical_document}
+Issue             :   ${user.clinical_detailissue}```

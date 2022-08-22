@@ -1,0 +1,7 @@
+{
+  "$kind": "Microsoft.CrossTrainedRecognizerSet",
+  "recognizers": [
+    "oc-itps-automation.lu"
+    ,"oc-itps-automation.qna"
+  ]
+}

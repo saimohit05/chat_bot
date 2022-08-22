@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# SendActivity_WXfy1G()
+[Activity
+    Text = ${SendActivity_WXfy1G_text()}
+]
+
+# SendActivity_WXfy1G_text()
+- Your Service Request would be created !

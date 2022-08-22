@@ -1,0 +1,15 @@
+[import](common.lg)
+
+# SendActivity_faWAXX_text()
+- Thank you for the details. I have created the incident . Incident ticket number is ${dialog.one.display_value} . Someone from helpdesk team will help with the resolution shortly. 
+# SendActivity_faWAXX()
+[Activity
+    Text = ${SendActivity_faWAXX_text()}
+]
+
+# SendActivity_BGxdbd_text()
+- Sever Issue !
+# SendActivity_BGxdbd()
+[Activity
+    Text = ${SendActivity_BGxdbd_text()}
+]

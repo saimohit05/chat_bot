@@ -1,0 +1,48 @@
+
+# Help
+> add some example phrases to trigger this intent:
+> - please tell me the weather
+> - what is the weather like in {city=Seattle}
+- help
+- assistance
+> entity definitions:
+> @ ml city
+
+# service
+- want to create an service 
+- service
+- raise a service request
+
+
+# Ticketactions
+- ticket actions 
+- i want to raise a ticket actions 
+- create a ticket action
+- Ticket Actions
+
+
+# Passwordreset
+- password rest actions 
+- i want to raise a password reset actions 
+- create a password reset action
+
+# clinical
+- Not able to view the patient UID in clinical charts
+- clinical issue 
+- Problem in clinical 
+- issue related regrading clinical
+- ${}
+# Logic
+- i want to create an incident 
+- incident
+- raise incident
+- open an incident ticket
+- my computer is not working 
+- bug issue 
+- error issue
+- my system is opening 
+- laptop functioning problem 
+- desktop not supporting 
+
+
+
